@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@theme  {
+    --color-ink-black-50: #edf1f7;
+    --color-ink-black-100: #dce4ef;
+    --color-ink-black-200: #b9c9df;
+    --color-ink-black-300: #95aed0;
+    --color-ink-black-400: #7293c0;
+    --color-ink-black-500: #4f77b0;
+    --color-ink-black-600: #3f608d;
+    --color-ink-black-700: #2f486a;
+    --color-ink-black-800: #203046;
+    --color-ink-black-900: #101823;
+    --color-ink-black-950: #0b1119;
+
+    --color-ink-black-50: #eef1f6;
+    --color-ink-black-100: #dde3ee;
+    --color-ink-black-200: #bbc7dd;
+    --color-ink-black-300: #99abcc;
+    --color-ink-black-400: #778fbb;
+    --color-ink-black-500: #5573aa;
+    --color-ink-black-600: #445c88;
+    --color-ink-black-700: #334566;
+    --color-ink-black-800: #222e44;
+    --color-ink-black-900: #111722;
+    --color-ink-black-950: #0c1018;
+
+    --color-ink-black-50: #eff2f5;
+    --color-ink-black-100: #dfe4ec;
+    --color-ink-black-200: #c0c9d8;
+    --color-ink-black-300: #a0aec5;
+    --color-ink-black-400: #8193b1;
+    --color-ink-black-500: #61789e;
+    --color-ink-black-600: #4e607e;
+    --color-ink-black-700: #3a485f;
+    --color-ink-black-800: #27303f;
+    --color-ink-black-900: #131820;
+    --color-ink-black-950: #0e1116;
+}
