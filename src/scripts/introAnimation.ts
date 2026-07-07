@@ -25,7 +25,7 @@ const normalize = (value: number, start: number, end: number): number => {
   return clamp((value - start) / range, 0, 1);
 };
 
-export const initIntroAnimation = (): IntroAnimationState | null => {
+const initIntroAnimation = (): IntroAnimationState | null => {
   const shell = document.querySelector<HTMLElement>("#intro-shell");
   const spacer = document.querySelector<HTMLElement>("#scroll-spacer");
   const stage = document.querySelector<HTMLElement>("#stage");
@@ -34,8 +34,12 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
     document.querySelector<HTMLElement>("#left-bottom-word");
   const rightBottomWord =
     document.querySelector<HTMLElement>("#right-bottom-word");
-  const leftMainText = document.querySelector<HTMLElement>("#left-main-text");
-  const rightMainText = document.querySelector<HTMLElement>("#right-main-text");
+  const leftMainTextWrapper = document.querySelector<HTMLElement>(
+    "#left-main-text-wrapper",
+  );
+  const rightMainTextWrapper = document.querySelector<HTMLElement>(
+    "#right-main-text-wrapper",
+  );
 
   if (
     shell === null ||
@@ -44,8 +48,8 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
     cardContainer === null ||
     leftBottomWord === null ||
     rightBottomWord === null ||
-    leftMainText === null ||
-    rightMainText === null
+    leftMainTextWrapper === null ||
+    rightMainTextWrapper === null
   ) {
     return null;
   }
@@ -83,6 +87,7 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
   stageAnimation.pause();
 
   let rafId = 0;
+  let hasScrolled = false;
 
   const update = (): void => {
     rafId = 0;
@@ -102,8 +107,8 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
       TEXT_EXIT_END,
     );
     const mainTextOpacity = Math.max(1 - progress * 1.5, 0);
-    const leftTextOffset = textExitProgress * CARD_EXIT_MULTIPLIER;
-    const rightTextOffset = -textExitProgress * CARD_EXIT_MULTIPLIER;
+    const leftTextOffset = -textExitProgress * CARD_EXIT_MULTIPLIER;
+    const rightTextOffset = textExitProgress * CARD_EXIT_MULTIPLIER;
     const cardFadeProgress = normalize(progress, CARD_FADE_START, 1);
     const stageFadeProgress = normalize(progress, STAGE_FADE_START, 1);
     const cardOpacity = 1 - cardFadeProgress;
@@ -111,12 +116,14 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
 
     cardAnimation.currentTime = time;
     stageAnimation.currentTime = time;
-    leftBottomWord.style.opacity = `${bottomWordsOpacity}`;
-    rightBottomWord.style.opacity = `${bottomWordsOpacity}`;
-    leftMainText.style.opacity = `${mainTextOpacity}`;
-    rightMainText.style.opacity = `${mainTextOpacity}`;
-    leftMainText.style.transform = `translateY(${leftTextOffset}%)`;
-    rightMainText.style.transform = `translateY(${rightTextOffset}%)`;
+    if (hasScrolled) {
+      leftBottomWord.style.opacity = `${bottomWordsOpacity}`;
+      rightBottomWord.style.opacity = `${bottomWordsOpacity}`;
+    }
+    leftMainTextWrapper.style.opacity = `${mainTextOpacity}`;
+    rightMainTextWrapper.style.opacity = `${mainTextOpacity}`;
+    leftMainTextWrapper.style.transform = `translateY(${leftTextOffset}%)`;
+    rightMainTextWrapper.style.transform = `translateY(${rightTextOffset}%)`;
     cardContainer.style.opacity = `${cardOpacity}`;
     stage.style.opacity = `${stageOpacity}`;
     stage.style.visibility = stageOpacity <= 0.01 ? "hidden" : "visible";
@@ -131,7 +138,12 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
     rafId = window.requestAnimationFrame(update);
   };
 
-  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  const onScroll = (): void => {
+    hasScrolled = true;
+    scheduleUpdate();
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", scheduleUpdate);
   update();
 
@@ -141,10 +153,12 @@ export const initIntroAnimation = (): IntroAnimationState | null => {
         window.cancelAnimationFrame(rafId);
       }
 
-      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", scheduleUpdate);
       cardAnimation.cancel();
       stageAnimation.cancel();
     },
   };
 };
+
+initIntroAnimation();

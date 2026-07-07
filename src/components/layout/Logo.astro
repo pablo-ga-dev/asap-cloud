@@ -1,5 +1,9 @@
+---
+const { color = "000000"} = Astro.props;
+---
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
-  <g fill="currentColor">
+  <g fill={`#${color}`}>
     <path d="M 40 430 
              C 120 290, 210 130, 260 55
              C 280 25, 315 25, 335 55
