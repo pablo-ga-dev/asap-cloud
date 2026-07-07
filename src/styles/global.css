@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+        url("/fonts/Satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2") format("woff2"),
+        url("/fonts/Satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff") format("woff"),
+        url("/fonts/Satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Cabinet Grotesk";
+    src:
+        url("/fonts/Cabinet%20Grotesk/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff2") format("woff2"),
+        url("/fonts/Cabinet%20Grotesk/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff") format("woff"),
+        url("/fonts/Cabinet%20Grotesk/Fonts/WEB/fonts/CabinetGrotesk-Variable.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
 @theme  {
     --color-ink-black-50: #edf1f7;
     --color-ink-black-100: #dce4ef;
@@ -13,27 +37,115 @@
     --color-ink-black-900: #101823;
     --color-ink-black-950: #0b1119;
 
-    --color-ink-black-50: #eef1f6;
-    --color-ink-black-100: #dde3ee;
-    --color-ink-black-200: #bbc7dd;
-    --color-ink-black-300: #99abcc;
-    --color-ink-black-400: #778fbb;
-    --color-ink-black-500: #5573aa;
-    --color-ink-black-600: #445c88;
-    --color-ink-black-700: #334566;
-    --color-ink-black-800: #222e44;
-    --color-ink-black-900: #111722;
-    --color-ink-black-950: #0c1018;
+    --color-accent-50: #ecfeff;
+    --color-accent-100: #cffafe;
+    --color-accent-200: #a5f3fc;
+    --color-accent-300: #67e8f9;
+    --color-accent-400: #22d3ee;
+    --color-accent-500: #06b6d4;
+    --color-accent-600: #0891b2;
+    --color-accent-700: #0e7490;
+    --color-accent-800: #155e75;
+    --color-accent-900: #164e63;
+    --color-accent-950: #083344;
+}
 
-    --color-ink-black-50: #eff2f5;
-    --color-ink-black-100: #dfe4ec;
-    --color-ink-black-200: #c0c9d8;
-    --color-ink-black-300: #a0aec5;
-    --color-ink-black-400: #8193b1;
-    --color-ink-black-500: #61789e;
-    --color-ink-black-600: #4e607e;
-    --color-ink-black-700: #3a485f;
-    --color-ink-black-800: #27303f;
-    --color-ink-black-900: #131820;
-    --color-ink-black-950: #0e1116;
+body {
+    font-family: "Satoshi", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    @apply bg-ink-black-950 text-ink-black-50 antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Cabinet Grotesk", "Satoshi", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-ink-black-50 leading-[1.02];
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-black-50 leading-[1.05];
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl font-semibold tracking-tight text-ink-black-100 leading-[1.1];
+    }
+
+    h4 {
+        @apply text-xl md:text-2xl font-semibold text-ink-black-100 leading-[1.15];
+    }
+
+    h5 {
+        @apply text-lg md:text-xl font-semibold text-ink-black-100 leading-[1.2];
+    }
+
+    h6 {
+        @apply text-base md:text-lg font-semibold text-ink-black-100 leading-tight;
+    }
+
+    p {
+        @apply text-base md:text-lg leading-relaxed text-ink-black-100;
+    }
+
+    small {
+        @apply text-sm leading-relaxed text-ink-black-300;
+    }
+}
+
+@layer components {
+    .rich-text {
+        @apply prose prose-lg max-w-none;
+        @apply prose-invert;
+        @apply prose-p:text-ink-black-100 prose-p:leading-relaxed;
+        @apply prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-ink-black-50;
+        @apply prose-h1:text-5xl prose-h1:leading-[1.02] prose-h1:md:text-6xl;
+        @apply prose-h2:text-4xl prose-h2:leading-[1.05] prose-h2:md:text-5xl;
+        @apply prose-h3:text-3xl prose-h3:leading-[1.1] prose-h3:md:text-4xl;
+        @apply prose-strong:text-ink-black-50;
+        @apply prose-a:text-accent-300 prose-a:no-underline hover:prose-a:text-accent-200;
+        @apply prose-li:text-ink-black-100 prose-ul:marker:text-accent-400;
+        @apply prose-blockquote:border-l-accent-400 prose-blockquote:text-ink-black-100;
+    }
+
+    .type-display {
+        @apply font-semibold tracking-tight text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-ink-black-50;
+    }
+
+    .type-h1 {
+        @apply font-semibold tracking-tight text-4xl md:text-5xl lg:text-6xl leading-[1.02] text-ink-black-50;
+    }
+
+    .type-h2 {
+        @apply font-semibold tracking-tight text-3xl md:text-4xl lg:text-5xl leading-[1.05] text-ink-black-50;
+    }
+
+    .type-h3 {
+        @apply font-semibold tracking-tight text-2xl md:text-3xl leading-[1.1] text-ink-black-100;
+    }
+
+    .type-h4 {
+        @apply font-semibold text-xl md:text-2xl leading-[1.15] text-ink-black-100;
+    }
+
+    .type-lead {
+        @apply text-lg md:text-xl leading-relaxed text-ink-black-100;
+    }
+
+    .type-body {
+        @apply text-base md:text-lg leading-relaxed text-ink-black-100;
+    }
+
+    .type-small {
+        @apply text-sm leading-relaxed text-ink-black-300;
+    }
+
+    .type-overline {
+        @apply text-xs md:text-sm uppercase tracking-[0.16em] text-ink-black-300 font-medium;
+    }
 }

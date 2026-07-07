@@ -4,7 +4,10 @@ import Head from "../components/layout/Head.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 
-const { title = "My Astro Website", lang = "es" } = Astro.props;
+import tailwind from "tailwindcss";
+import tailwindTypography from "@tailwindcss/typography";
+
+const { title = "ASAP Cloud", lang = "es" } = Astro.props;
 ---
 <html lang={lang}>
   <head>

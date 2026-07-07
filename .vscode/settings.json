@@ -1,0 +1,17 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "editor.colorDecorators": true,
+  "css.colorDecorators.enable": true,
+  "files.associations": {
+    "**/src/styles/global.css": "tailwindcss",
+    "**/src/styles/*.css": "tailwindcss"
+  },
+  "[css]": {
+    "editor.colorDecorators": true,
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[tailwindcss]": {
+    "editor.colorDecorators": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
