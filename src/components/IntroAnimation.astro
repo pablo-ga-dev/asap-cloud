@@ -1,0 +1,150 @@
+---
+
+---
+
+<div id="intro-shell" class="relative w-full">
+  <div
+    id="stage"
+    class="fixed inset-0 z-40 flex items-center justify-center overflow-hidden bg-black text-white"
+  >
+    <span
+      id="left-bottom-word"
+      class="intro-bottom-word pointer-events-none absolute bottom-4 left-5 text-[clamp(2.4rem,7.2vw,4.8rem)] font-medium leading-none tracking-tight text-white md:bottom-8 md:left-8"
+      >Loading</span
+    >
+    <span
+      id="right-bottom-word"
+      class="intro-bottom-word pointer-events-none absolute bottom-4 right-5 text-[clamp(2.4rem,7.2vw,4.8rem)] font-medium leading-none tracking-tight text-white md:bottom-8 md:right-8"
+      >Dreams</span
+    >
+    <div id="wrapper" class="flex h-screen w-full items-center justify-center">
+      <div
+        id="card-container"
+        class="flex"
+        style="--square-side: clamp(9rem, 26vmin, 18rem); width: calc(var(--square-side) * 2); height: var(--square-side);"
+      >
+        <div
+          id="left-card"
+          class="relative h-full flex-1 bg-white text-black intro-square-left"
+        >
+          <div
+            id="left-main-text-wrapper"
+            class="absolute left-0 top-0 p-4 md:p-4 overflow-hidden"
+          >
+            <span id="left-main-text" class="text-xl font-semibold inline-block intro-main-text-left "
+              >Fast-Track</span
+            >
+          </div>
+        </div>
+
+        <div
+          id="right-card"
+          class="relative h-full flex-1 bg-accent-300 text-black intro-square-right"
+        >
+          <div
+            id="right-main-text-wrapper"
+            class="absolute bottom-0 right-0 p-4 md:p-4 overflow-hidden"
+          >
+            <span
+              id="right-main-text"
+              class="text-xl font-semibold inline-block intro-main-text-right"
+              >Secure Reality</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="scroll-spacer" class="h-[220vh] w-full" aria-hidden="true"></div>
+</div>
+
+<script type="module">
+  import { initIntroAnimation } from "../scripts/introAnimation";
+
+  initIntroAnimation();
+</script>
+
+<style>
+  @keyframes introBottomWordFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .intro-bottom-word {
+    opacity: 0;
+    animation: introBottomWordFadeIn 2s linear;
+  }
+
+  @keyframes introSquareLeftIn {
+    from {
+      opacity: 0.5;
+      transform: translateY(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .intro-square-left {
+    opacity: 0.5;
+    transform: translateY(-50px);
+    animation: introSquareLeftIn 1s ease-out 0.2s forwards;
+  }
+
+  @keyframes introSquareRightIn {
+    from {
+      opacity: 0.5;
+      transform: translateY(50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .intro-square-right {
+    opacity: 0.5;
+    transform: translateY(50px);
+    animation: introSquareRightIn 1s ease-out 0.2s forwards;
+  }
+
+  @keyframes introMainTextLeftIn {
+    from {
+      transform: translateY(-75px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .intro-main-text-left {
+    transform: translateY(-75px);
+    animation: introMainTextLeftIn 1s ease-out;
+  }
+
+  @keyframes introMainTextRightIn {
+    from {
+      transform: translateY(75px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .intro-main-text-right {
+    transform: translateY(75px);
+    animation: introMainTextRightIn 1s ease-out;
+  }
+</style>

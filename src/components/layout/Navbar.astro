@@ -1,5 +1,6 @@
 ---
 import SessionButton from "../SessionButton.astro";
+import Logo from "./Logo.astro";
 const links = [
   { href: "/", label: "Inicio" },
   { href: "/services", label: "Servicios" },
@@ -8,13 +9,16 @@ const links = [
 ];
 ---
 
-<header class="border-b border-gray-200">
-  <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-    <!-- Logo -->
-    <a href="/" class="text-xl font-bold"> ASAP CLOUD </a>
+<header class="fixed top-0 w-full z-50 pointer-events-none">
+  <nav
+    class="grid grid-cols-3 items-center mx-auto h-16 px-4 text-white mix-blend-difference pointer-events-auto"
+  >
+    <a href="/" class="text-xl font-bold text-white w-10">
+      <Logo />
+    </a>
 
     <!-- Navegación -->
-    <ul class="flex items-center gap-8">
+    <ul class="flex items-center justify-center gap-8">
       {
         links.map((link) => (
           <li>
@@ -29,8 +33,8 @@ const links = [
       }
     </ul>
 
-    <a href="/" class="text-xl font-bold">
+    <div class="flex justify-end">
       <SessionButton />
-    </a>
+    </div>
   </nav>
 </header>
