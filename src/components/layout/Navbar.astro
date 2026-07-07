@@ -1,11 +1,10 @@
 ---
-import SessionButton from "../SessionButton.astro";
-import Logo from "./Logo.astro";
+import SessionButton from "../ui/SessionButton.astro";
+import Logo from "../ui/Logo.astro";
 const links = [
-  { href: "/", label: "Inicio" },
-  { href: "/services", label: "Servicios" },
-  { href: "/about", label: "Nosotros" },
-  { href: "/contact", label: "Contacto" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 ---
 
@@ -15,8 +14,11 @@ const links = [
   <nav
     class="grid grid-cols-3 items-center mx-auto h-16 px-4 text-white mix-blend-difference pointer-events-auto"
   >
-    <a href="/" class="text-xl font-bold w-10">
-      <Logo color="ffffff" />
+    <a
+      href="/"
+      class="text-xl font-bold w-10 text-white hover:text-accent-300 transition duration-300"
+    >
+      <Logo />
     </a>
 
     <!-- Navegación -->
@@ -26,9 +28,10 @@ const links = [
           <li>
             <a
               href={link.href}
-              class="text-m font-light tracking-wide transition-colors duration-200"
+              class="text-m font-light tracking-wide transition duration-300 group relative"
             >
               {link.label}
+              <span class="absolute -bottom-1 left-0 h-px w-full scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100" />
             </a>
           </li>
         ))
@@ -36,9 +39,7 @@ const links = [
     </ul>
 
     <div class="flex justify-end">
-      <div class="w-10">
-        <SessionButton color="ffffff" />
-      </div>
+      <SessionButton />
     </div>
   </nav>
 </header>
